@@ -1,6 +1,6 @@
 // Initialize modules
 // Importing specific gulp API functions lets us write them below as series() instead of gulp.series()
-const { src, dest, watch, series, task, parallel } = require('gulp');
+const { src, dest, watch, series, parallel } = require('gulp');
 // Importing all the Gulp-related packages we want to use
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
@@ -13,6 +13,8 @@ const rename = require('gulp-rename');
 const replace = require('gulp-replace');
 const imagemin = require('gulp-imagemin');
 const include = require('gulp-include');
+const livereload = require('gulp-livereload');
+const notify = require('gulp-notify');
 const zip = require('gulp-zip');
 
 // External Files
@@ -68,7 +70,9 @@ function scssTask(){
         .pipe(dest('.'))
         .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
         .pipe(rename({ suffix: '.min' }))
-        .pipe(dest('.')
+        .pipe(dest( '.' ) )
+        .pipe(notify({ message: 'sass task complete' }))
+        .pipe(livereload()
     ); // put final CSS in dist folder
 }
 
@@ -81,7 +85,9 @@ function jsTask(){
         // .pipe(concat('scripts.js'))
         .pipe(uglify())
         .pipe(rename({ suffix: '.min' }))
-        .pipe(dest('./js/dist')
+        .pipe(dest('./js/dist') )
+        .pipe(notify({ message: 'scripts task complete' }))
+        .pipe( livereload()
     );
 }
 
@@ -89,7 +95,8 @@ function jsTask(){
 function imgTask(){
     return src(files.imgPath)
         .pipe(imagemin({ progressive: true, svgoPlugins: [{removeViewBox: false}]}))
-        .pipe(dest('./images')
+        .pipe(dest('./images'))
+        .pipe(notify({ message: 'Images task complete' })
     );
 }
 
@@ -97,7 +104,7 @@ function imgTask(){
 // If any change, run scss and js tasks simultaneously
 function watchTask(){
     watch([files.scssPath, files.jsPath], 
-        parallel(scssTask, jsTask));    
+        parallel(scssTask, jsTask, imgTask));    
 }
 
 // Export the default Gulp task so it can be run
