@@ -121,7 +121,9 @@ add_action( 'widgets_init', 'cubeloftmd_widgets_init' );
  * Enqueue scripts and styles.
  */
 function cubeloftmd_scripts() {
-	wp_enqueue_style( 'cubeloftmd-style', get_stylesheet_uri() );
+    wp_enqueue_style( 'cubeloftmd-style', get_stylesheet_uri() );
+
+    wp_enqueue_style( 'material-icons', '//fonts.googleapis.com/icon?family=Material+Icons' );
 
 	wp_enqueue_script( 'cubeloftmd-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
