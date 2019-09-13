@@ -21,38 +21,68 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'cubeloftmd' ); ?></a>
+<div id="page" class="site mdl-layout mdl-js-layout">
+    <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'cubeloftmd' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$cubeloftmd_description = get_bloginfo( 'description', 'display' );
-			if ( $cubeloftmd_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $cubeloftmd_description; /* WPCS: xss ok. */ ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+	<header id="masthead" class="site-header mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <div class="site-branding">
+                <?php
+                the_custom_logo();
+                if ( is_front_page() && is_home() ) :
+                    ?>
+                    <h1 class="site-title mdl-layout-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+                    <?php
+                else :
+                    ?>
+                    <span class="site-title mdl-layout-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
+                    <?php
+                endif;
+                /*$cubeloftmd_description = get_bloginfo( 'description', 'display' );
+                if ( $cubeloftmd_description || is_customize_preview() ) :
+                    ?>
+                    <p class="site-description"><?php echo $cubeloftmd_description; /* WPCS: xss ok. */ /*?></p> 
+                <?php endif;*/ ?>
+            </div><!-- .site-branding -->
+            
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'cubeloftmd' ); ?></button>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			) );
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">
+            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'cubeloftmd' ); ?></button>
+            <?php
+                /*wp_nav_menu( array(
+                    'theme_location' => 'menu-1',
+                    'menu_id'        => 'primary-menu',
+                ) );*/
+                $args = array(
+                    'theme_location' => 'menu-1',
+                    'container'       => 'nav',
+                    'items_wrap' => '%3$s',
+                    'container_class' => 'mdl-navigation mdl-layout--large-screen-only',
+                    'walker' => new MDLWP_Nav_Walker()
+                );
+                if (has_nav_menu('menu-1')) {
+                    wp_nav_menu($args);
+                    }
+            ?>
+        </div><!-- .mdl-layout__header-row -->
+    </header><!-- #masthead -->
+    
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title"><?php bloginfo( 'name' ); ?></span>
+        <?php
+            $args = array(
+                'theme_location' => 'drawer',
+                'container'       => 'nav',
+                'items_wrap' => '%3$s',
+                'container_class' => 'mdl-navigation',
+                'walker' => new MDLWP_Nav_Walker()
+            );
+            if (has_nav_menu('drawer')) {
+                wp_nav_menu($args);
+            }
+        ?>
+    </div><!-- .mdl-layout__drawer -->
+    
+    <main class="mdl-layout__content">
+        <div id="content" class="site-content">

@@ -45,6 +45,7 @@ if ( ! function_exists( 'cubeloftmd_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'cubeloftmd' ),
+			'drawer' => esc_html__( 'Drawer', 'cubeloftmd' ),
 		) );
 
 		/*
@@ -133,6 +134,11 @@ function cubeloftmd_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'cubeloftmd_scripts' );
+
+/**
+ * Custom Walker Menu for Material Design Lite.
+ */
+require get_template_directory() . '/inc/nav-walker.php';
 
 /**
  * Implement the Custom Header feature.
