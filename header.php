@@ -22,7 +22,6 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="site mdl-layout mdl-js-layout">
-    <!-- <a class="skip-link screen-reader-text" href="#content"><?php /*esc_html_e( 'Skip to content', 'cubeloftmd' );*/ ?></a> -->
 
 	<header id="masthead" class="site-header mdl-layout__header">
         <div class="mdl-layout__header-row">
