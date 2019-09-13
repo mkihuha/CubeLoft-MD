@@ -1,0 +1,27 @@
+{
+    "name": "cubeloftmd",
+    "version": "1.0.0",
+    "description": "CubeLoft MD is a WordPress theme built on top of the Material Design Lite framework",
+    "author": "Martin Kihuha <mkihuha@me.com>",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mkihuha/CubeLoft-MD.git"
+    },
+    "devDependencies": {
+        "autoprefixer": "^9.6.1",
+        "cssnano": "^4.1.10",
+        "gulp": "^4.0.2",
+        "gulp-concat": "^2.6.1",
+        "gulp-imagemin": "^6.1.0",
+        "gulp-include": "^2.4.1",
+        "gulp-postcss": "^8.0.0",
+        "gulp-rename": "^1.4.0",
+        "gulp-replace": "^1.0.0",
+        "gulp-sass": "^4.0.2",
+        "gulp-sourcemaps": "^2.6.5",
+        "gulp-uglify": "^3.0.2",
+        "gulp-zip": "^5.0.0",
+        "material-design-lite": "^1.3.0"
+    }
+}
