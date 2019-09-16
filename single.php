@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package CubeLoftMD
+ * @package CubeLoft MD
  */
 
 get_header();
@@ -19,7 +19,12 @@ get_header();
 
 			get_template_part( 'template-parts/content', get_post_type() );
 
-			the_post_navigation();
+			the_post_navigation(
+                array(
+                    'prev_text' => '<i class="material-icons">chevron_right</i>',
+                    'next_text' => '<i class="material-icons">chevron_left</i>'
+                )
+            );
 
 			// If comments are open or we have at least one comment, load up the comment template.
 			if ( comments_open() || get_comments_number() ) :

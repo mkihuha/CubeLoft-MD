@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package CubeLoftMD
+ * @package CubeLoft MD
  */
 
 ?>
@@ -37,17 +37,12 @@
                     <span class="site-title mdl-layout-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
                     <?php
                 endif;
-                /*$cubeloftmd_description = get_bloginfo( 'description', 'display' );
-                if ( $cubeloftmd_description || is_customize_preview() ) :
-                    ?>
-                    <p class="site-description"><?php echo $cubeloftmd_description; /* WPCS: xss ok. */ /*?></p> 
-                <?php endif;*/ ?>
+                ?>
             </div><!-- .site-branding -->
             
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
-
-            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'cubeloftmd' ); ?></button>
+            
             <?php
                 /*wp_nav_menu( array(
                     'theme_location' => 'menu-1',

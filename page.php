@@ -9,7 +9,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package CubeLoftMD
+ * @package CubeLoft MD
  */
 
 get_header();
@@ -22,12 +22,16 @@ get_header();
 		while ( have_posts() ) :
 			the_post();
 
-			get_template_part( 'template-parts/content', 'page' );
+            get_template_part( 'template-parts/content', 'page' );
+            
+            if ( get_theme_mod( 'cubeloftmd_page_comment_toggle' ) == 1 ) : // show page comments?
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+                // If comments are open or we have at least one comment, load up the comment template.
+                if ( comments_open() || get_comments_number() ) :
+                    comments_template();
+                endif;
+                
+            endif;
 
 		endwhile; // End of the loop.
 		?>

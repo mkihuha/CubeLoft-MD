@@ -1,5 +1,5 @@
 /*!
-Theme Name: CubeLoftMD
+Theme Name: CubeLoft MD
 Theme URI: http://underscores.me/
 Author: Martin Kihuha
 Author URI: http://www.wakilichapchap.co.ke
@@ -13,12 +13,20 @@ Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-com
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
-CubeLoftMD is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
+CubeLoft MD is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
+@import "color-definitions";
+
+// Use color primarily for emphasis. Choose colors that fit with
+// your brand and provide good contrast between visual components.
+// $color-primary: $palette-light-blue-300;
+// $color-primary-dark: $palette-indigo-700;
+// $color-accent: $palette-brown-300;
+
 @import "material-design-lite";
 
 .site-content {
@@ -32,6 +40,63 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 .widget-area {
     @extend .mdl-cell, .mdl-cell--3-col;
 }
+
+.demo-card-wide {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.site-title a {
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.entry-title {
+    margin: 0 0 5px;
+    a {
+        text-decoration: none;
+    }
+}
+
+.post-thumbnail {
+    img {
+        background-size: contain;
+        margin: 0 15px;
+    }
+}
+
+.comments-area {
+    padding: 0 10px;
+    h3 {
+        font-size: 24px;
+        line-height: 10px;
+    }
+}
+
+.nav-previous {
+    float: right;
+}
+
+.nav-next {
+    float: left;
+}
+
+article {
+    .entry-header {
+        padding-bottom: 0;
+    }
+    .entry-title {
+        margin: 0 0 10px;
+    }
+    .entry-content {
+        margin-top: 0;
+    }
+}
+
+// .entry-title {
+//     font-size: 200%;
+// }
 
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:

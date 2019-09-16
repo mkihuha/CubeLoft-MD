@@ -1,10 +1,10 @@
 <?php
 /**
- * CubeLoftMD functions and definitions
+ * CubeLoft MD functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package CubeLoftMD
+ * @package CubeLoft MD
  */
 
 if ( ! function_exists( 'cubeloftmd_setup' ) ) :
@@ -19,7 +19,7 @@ if ( ! function_exists( 'cubeloftmd_setup' ) ) :
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on CubeLoftMD, use a find and replace
+		 * If you're building a theme based on CubeLoft MD, use a find and replace
 		 * to change 'cubeloftmd' to the name of your theme in all the template files.
 		 */
 		load_theme_textdomain( 'cubeloftmd', get_template_directory() . '/languages' );
@@ -109,13 +109,184 @@ function cubeloftmd_widgets_init() {
 		'name'          => esc_html__( 'Sidebar', 'cubeloftmd' ),
 		'id'            => 'sidebar-1',
 		'description'   => esc_html__( 'Add widgets here.', 'cubeloftmd' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'before_widget' => '<section id="%1$s" class="widget %2$s mdl-card mdl-shadow--2dp">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'before_title'  => '<div class="mdl-card__title mdl-card--expand"><h2 class="widget-title mdl-card__title-text">',
+		'after_title'   => '</h2></div>',
 	) );
 }
 add_action( 'widgets_init', 'cubeloftmd_widgets_init' );
+
+/**
+ * Customizer Settings
+ */
+function cubeloftmd_customizer( $wp_customize ) {
+
+	// add "Content Options" section
+	// $wp_customize->add_section( 'cubeloftmd_content_options_section' , array(
+	// 	'title'      => __( 'Content Options', 'cubeloftmd' ),
+	// 	'priority'   => 100,
+	// ) );
+	
+	// add setting for page comment toggle checkbox
+	// $wp_customize->add_setting( 'cubeloftmd_page_comment_toggle', array( 
+	// 	'default' => 1 
+	// ) );
+	
+	// add control for page comment toggle checkbox
+	// $wp_customize->add_control( 'cubeloftmd_page_comment_toggle', array(
+	// 	'label'     => __( 'Show comments on pages?', 'cubeloftmd' ),
+	// 	'section'   => 'cubeloftmd_content_options_section',
+	// 	'priority'  => 10,
+	// 	'type'      => 'checkbox'
+    // ) );
+    
+    // add link color picker setting
+    $wp_customize->add_setting( 'link_color', array(
+        'default' => '#ff4081'
+    ) );
+
+    // add link color picker control
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
+        'label' => 'Link Color',
+        'section' => 'colors',
+        'settings' => 'link_color',
+    ) ) );
+    
+    // add navbar section
+    $wp_customize->add_section( 'cubeloftmd_navbar_section', array(
+        'title' => __( 'Navigation Bar', 'cubeloftmd' ),
+        'priority' => 100,
+    ) );
+
+    // add navbar color picker setting
+    $wp_customize->add_setting( 'navbar_color', array(
+        'default' => '#3f51b5'
+    ) );
+
+    // add navbar color picker control
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'navbar_color', array(
+        'label' => 'NavBar Color',
+        'section' => 'cubeloftmd_navbar_section',
+        'settings' => 'navbar_color',
+    ) ) );
+
+    // add navbar transparency setting
+    $wp_customize->add_setting( 'navbar_transparency', array(
+        'default' => 0
+    ) );
+
+    // add navbar transparency control
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'navbar_transparency', array(
+        'label'     => __( 'Make NavBar transparent?', 'cubeloftmd' ),
+        'section' => 'cubeloftmd_navbar_section',
+		'priority'  => 10,
+		'type'      => 'checkbox'
+    ) ) );
+
+    // add drawer background setting
+    $wp_customize->add_setting( 'drawer_bg_color', array(
+        'default' => '#FAFAFA'
+    ) );
+
+    // add navbar transparency control
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'drawer_bg_color', array(
+        'label' => 'Drawer Background Color',
+        'section' => 'cubeloftmd_navbar_section',
+        'settings' => 'drawer_bg_color',
+    ) ) );
+
+    // add drawer link setting
+    $wp_customize->add_setting( 'drawer_link_color', array(
+        'default' => '#757575'
+    ) );
+
+    // add navbar transparency control
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'drawer_link_color', array(
+        'label' => 'Drawer Link Color',
+        'section' => 'cubeloftmd_navbar_section',
+        'settings' => 'drawer_link_color',
+    ) ) );
+}
+add_action( 'customize_register', 'cubeloftmd_customizer' );
+
+function cubeloftmd_customizer_head_styles() {
+    ?>
+    <style>
+        .mdl-layout__header-row {
+            padding-left: 20px;
+        }
+        .mdl-layout__drawer-button, .mdl-layout__drawer{
+            left: initial;
+            right: 0;
+        }
+
+        .mdl-layout__drawer{    
+            transform:translateX(250px);
+        }
+    </style>
+    <?php
+	$link_color = get_theme_mod( 'link_color' ); 
+	
+	if ( $link_color != '#ff4081' ) :
+	?>
+		<style type="text/css">
+			a, .entry-title {
+				color: <?php echo $link_color; ?>;
+			}
+		</style>
+	<?php
+    endif;
+    
+	$navbar_color = get_theme_mod( 'navbar_color' ); 
+	
+	if ( $navbar_color != '#3f51b5' ) :
+	?>
+		<style type="text/css">
+			.mdl-layout__header {
+				background-color: <?php echo $navbar_color; ?>;
+			}
+		</style>
+	<?php
+    endif;
+    
+    if ( get_theme_mod( 'navbar_transparency' ) == 1 ) :
+    ?>
+        <style type="text/css">
+            .mdl-layout__header {
+                background-color: rgba(255, 255, 255, 0);
+                -webkit-box-shadow: 0 0 0 0 rgba(0,0,0,0),0 0 0 0 rgba(0,0,0,0),0 0 0 0 rgba(0,0,0,0);
+                box-shadow: 0 0 0 0 rgba(0,0,0,0),0 0 0 0 rgba(0,0,0,0),0 0 0 0 rgba(0,0,0,0);
+            }
+        </style>
+    <?php
+    endif;
+    
+	$drawer_bg_color = get_theme_mod( 'drawer_bg_color' ); 
+	
+	if ( $drawer_bg_color != '#FAFAFA' ) :
+	?>
+		<style type="text/css">
+			.mdl-layout__drawer {
+				background-color: <?php echo $drawer_bg_color; ?>;
+			}
+		</style>
+	<?php
+    endif;
+    
+	$drawer_link_color = get_theme_mod( 'drawer_link_color' ); 
+	
+	if ( $drawer_link_color != '#757575' ) :
+	?>
+		<style type="text/css">
+			.mdl-navigation__link {
+				background-color: <?php echo $drawer_link_color; ?>;
+			}
+		</style>
+	<?php
+    endif;
+}
+add_action( 'wp_head', 'cubeloftmd_customizer_head_styles' );
 
 /**
  * Enqueue scripts and styles.

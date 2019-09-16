@@ -1,4 +1,4 @@
-=== CubeLoftMD ===
+=== CubeLoft MD ===
 
 Contributors: automattic
 Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
@@ -9,7 +9,7 @@ Stable tag: 1.0.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 
-A starter theme called CubeLoftMD.
+A starter theme called CubeLoft MD.
 
 == Description ==
 
@@ -25,7 +25,7 @@ CubeLoft MD theme is built on top of Google\'s Material Design framework and fea
 
 = Does this theme support any plugins? =
 
-CubeLoftMD includes support for Infinite Scroll in Jetpack.
+CubeLoft MD includes support for Infinite Scroll in Jetpack.
 
 == Changelog ==
 

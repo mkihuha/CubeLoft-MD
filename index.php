@@ -9,7 +9,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package CubeLoftMD
+ * @package CubeLoft MD
  */
 
 get_header();
@@ -42,7 +42,12 @@ get_header();
 
 			endwhile;
 
-			the_posts_navigation();
+			the_posts_navigation(
+                array(
+                    'prev_text' => '<i class="material-icons">chevron_right</i>',
+                    'next_text' => '<i class="material-icons">chevron_left</i>'
+                )
+            );
 
 		else :
 
